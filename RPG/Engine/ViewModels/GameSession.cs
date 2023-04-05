@@ -8,17 +8,16 @@ namespace Engine.ViewModels
 {
     public class GameSession
     {
-        public Player CurerntPlayer { get; set; }
+        public Player CurrentPlayer { get; set; }
         public GameSession() {
 
-            CurerntPlayer = new Player();
-            CurerntPlayer.Name = "Micheal";
-            CurerntPlayer.CharacterClass = "Swordsman";
-            CurerntPlayer.HitPoints = 69;
-            CurerntPlayer.Gold = 1000000;
-            CurerntPlayer.ExperiencePoints = 0;
-            CurerntPlayer.Level = 1;
+            CurrentPlayer = new Player();
+            CurrentPlayer.Name = "Micheal";
+            CurrentPlayer.CharacterClass = "Swordsman";
+            CurrentPlayer.HitPoints = 69;
+            CurrentPlayer.Gold = 1000000;
+            CurrentPlayer.ExperiencePoints = 0;
+            CurrentPlayer.Level = 1;
         }
-
     }
 }
