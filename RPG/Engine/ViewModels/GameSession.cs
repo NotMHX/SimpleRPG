@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 using Engine.Models;
 namespace Engine.ViewModels
 {
-    internal class GameSession
+    public class GameSession
     {
-        Player Currentplay { get; set; }
+        public Player CurerntPlayer { get; set; }
         public GameSession() {
-        
-        Currentplay= new Player();
 
-            Currentplay.Name = "Micheal";
-            Currentplay.Level = 1;
-            Currentplay.HitPoints = 5;
-            Currentplay.ExperiencePoints = 0;
-            Currentplay.CharacterClass = "Swordsman";
-            Currentplay.Gold = 2;
+            CurerntPlayer = new Player();
+            CurerntPlayer.Name = "Micheal";
+            CurerntPlayer.CharacterClass = "Swordsman";
+            CurerntPlayer.HitPoints = 69;
+            CurerntPlayer.Gold = 1000000;
+            CurerntPlayer.ExperiencePoints = 0;
+            CurerntPlayer.Level = 1;
         }
 
     }
