@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG", "RPG\RPG.csproj", "{06574BBD-4ECC-45A6-99D8-BAB29C2ACC61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPG", "RPG\RPG.csproj", "{06574BBD-4ECC-45A6-99D8-BAB29C2ACC61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Engine", "Engine\Engine.csproj", "{7C8B1370-993C-43C4-B511-2CABBD01148D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{06574BBD-4ECC-45A6-99D8-BAB29C2ACC61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06574BBD-4ECC-45A6-99D8-BAB29C2ACC61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06574BBD-4ECC-45A6-99D8-BAB29C2ACC61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C8B1370-993C-43C4-B511-2CABBD01148D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C8B1370-993C-43C4-B511-2CABBD01148D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C8B1370-993C-43C4-B511-2CABBD01148D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C8B1370-993C-43C4-B511-2CABBD01148D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
