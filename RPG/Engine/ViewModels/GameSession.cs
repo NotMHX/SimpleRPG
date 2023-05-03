@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Engine.Models;
+using Engine.Factory;
 namespace Engine.ViewModels
 {
     public class GameSession
     {
+        public World CurrentWorld { get; set; }
         public Player CurrentPlayer { get; set; }
         public Location CurrentLocation { get; set; }
         public GameSession() {
@@ -27,6 +29,10 @@ namespace Engine.ViewModels
 
             CurrentLocation.Description = "This is your house.";
             CurrentLocation.ImageName = "/Engine;component/Images/Locations/house.png";
+
+            Worldfactory factory = new Worldfactory();
+            CurrentWorld = factory.Createworld();
+
 
         }
     }
