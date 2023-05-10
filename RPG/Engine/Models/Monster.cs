@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Engine.Models
 {
-    public class Monster : BaseNotificationClass
+    public class Monster : BaseNotification
     {
         private int _hitPoints;
         public string Name { get; private set; }

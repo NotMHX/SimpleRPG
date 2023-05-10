@@ -7,11 +7,14 @@ using Engine.Models;
 using Engine.Factory;
 using System.Security.Cryptography.X509Certificates;
 using System.ComponentModel;
+using Engine.EventArgs;
 
 namespace Engine.ViewModels
 {
     public class GameSession : BaseNotification
     {
+        public event EventHandler<GameMessageEventArgs> OnMessageRaised;
+
         private Location _currentLocation;
         private Monster _currentMonster;
         public World CurrentWorld { get; set; }
@@ -41,6 +44,11 @@ namespace Engine.ViewModels
 
                 OnPropertyChanged(nameof(CurrentMonster));
                 OnPropertyChanged(nameof(HasMonster));
+
+                if (CurrentMonster != null)
+                {
+                    RaiseMessage($"\nYou encountered a {CurrentMonster.Name} here.");
+                }
             }
         }
 
@@ -87,8 +95,8 @@ namespace Engine.ViewModels
                 Level = 1
             };
          ;
-
-            CurrentWorld = Worldfactory.CreateWorld();
+            Worldfactory w = new();
+            CurrentWorld = w.CreateWorld();
 
             CurrentLocation = CurrentWorld.LocationAt(0,0);
             CurrentPlayer.Inventory.Add(ItemFactory.CreateGameItem(1001));
@@ -138,6 +146,11 @@ namespace Engine.ViewModels
         private void GetMonsterAtLocation()
         {
             CurrentMonster = CurrentLocation.GetMonster();
+        }
+
+        private void RaiseMessage(string message)
+        {
+            OnMessageRaised?.Invoke(this, new GameMessageEventArgs(message));
         }
     }
 }
