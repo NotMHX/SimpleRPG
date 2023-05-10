@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -14,6 +15,8 @@ namespace Engine.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageName { get; set; }
+  public List<Quest> QuestsAvailableHere { get; set; } = new List<Quest>();
+
 
         public List<MonsterEncounter> MonstersHere { get; set; } = new List<MonsterEncounter>();
 
@@ -56,5 +59,7 @@ namespace Engine.Models
             return MonsterFactory.GetMonster(MonstersHere.Last().MonsterID);
 
         }
+
+       
     }
 }
