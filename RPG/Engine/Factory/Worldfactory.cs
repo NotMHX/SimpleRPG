@@ -17,7 +17,7 @@ namespace Engine.Factory
             world.AddLocation(0, 1, "Forest", "This is a very scary forest.", "/Engine;component/Images/Locations/house.png");
             world.LocationAt(0, 1).AddMonster(1, 100);
             world.LocationAt(0, 1).QuestsAvailableHere.Add(QuestFactory.GetQuestByID(1));
-            world.AddLocation(0, 2, "Witch-Tower", "This is a spooky Witch Tower. I wonder if there's a witch here.", "/Engine;component/Images/Locations/house.png");
+            world.AddLocation(0, 2, "Witch Tower", "This is a spooky Witch Tower. I wonder if there's a witch here.", "/Engine;component/Images/Locations/house.png");
             world.LocationAt(0, 2).AddMonster(3, 100);
             world.AddLocation(-1, 0, "Graveyard", "This is where the dead are buried. I hope nobody is alive.", "/Engine;component/Images/Locations/house.png");
             world.AddLocation(1, 0, "Zoo", "There's animals here.", "/Engine;component/Images/Locations/house.png");
