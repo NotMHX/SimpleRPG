@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Engine.Models;
 
-namespace Engine.Models
+namespace Engine.Factory
 {
     public static class ItemFactory
     {

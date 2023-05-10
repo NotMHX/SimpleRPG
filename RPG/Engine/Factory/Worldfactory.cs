@@ -11,21 +11,13 @@ namespace Engine.Factory
         internal World Createworld()
         {
             World world = new World();
-            if (File.Exists(GAME_DATA_FILENAME))
-            {
-                XmlDocument data = new XmlDocument();
-                data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
-                string rootImagePath =
-                    data.SelectSingleNode("/Locations")
-                        .AttributeAsString("RootImagePath");
-                LoadLocationsFromNodes(world,
-                                       rootImagePath,
-                                       data.SelectNodes("/Locations/Location"));
-            }
-            else
-            {
-                throw new FileNotFoundException($"Missing data file: {GAME_DATA_FILENAME}");
-            }
+            world.AddLocation(0,-1,"Home", "This is your house.", "/Engine;component/Images/Locations/house.png");
+            world.AddLocation(0, 0, "Village", "This is your house.", "/Engine;component/Images/Locations/house.png");
+            world.AddLocation(0, 1, "Forest", "This is your house.", "/Engine;component/Images/Locations/house.png");
+            world.AddLocation(0, 2, "Witch-Tower", "This is your house.", "/Engine;component/Images/Locations/house.png");
+            world.AddLocation(-1, 0, "Graveyard", "This is your house.", "/Engine;component/Images/Locations/house.png");
+            world.AddLocation(1, 0, "Animals", "This is your house.", "/Engine;component/Images/Locations/house.png");
+            world.AddLocation(1, 1, "Castle", "This is your house.", "/Engine;component/Images/Locations/house.png");
             return world;
         }
     }
