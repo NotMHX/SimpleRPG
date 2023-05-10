@@ -28,7 +28,7 @@ namespace Engine.Factory
              rewardInItems));
         }
 
-        internal static Quest GetQuestID(int id)
+        internal static Quest GetQuestByID(int id)
         {
             return _quests.FirstOrDefault(quest => quest.ID == id); // Gets the first result where the input matches an ID in the _quests list
         }
