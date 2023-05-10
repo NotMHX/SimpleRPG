@@ -14,6 +14,7 @@ namespace Engine.Factory
             world.AddLocation(0,-1,"Home", "This is your house.", "/Engine;component/Images/Locations/house.png");
             world.AddLocation(0, 0, "Village", "This is your house.", "/Engine;component/Images/Locations/house.png");
             world.AddLocation(0, 1, "Forest", "This is your house.", "/Engine;component/Images/Locations/house.png");
+            world.LocationAt(0, 1).QuestsAvailableHere.Add(QuestFactory.GetQuestByID(1));
             world.AddLocation(0, 2, "Witch-Tower", "This is your house.", "/Engine;component/Images/Locations/house.png");
             world.AddLocation(-1, 0, "Graveyard", "This is your house.", "/Engine;component/Images/Locations/house.png");
             world.AddLocation(1, 0, "Animals", "This is your house.", "/Engine;component/Images/Locations/house.png");
