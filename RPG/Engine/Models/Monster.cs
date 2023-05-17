@@ -9,14 +9,14 @@ namespace Engine.Models
 {
     public class Monster : BaseNotification
     {
-        private int _hitPoints 
+        private int _hitPoints;
         public string Name { get; private set; }
         public string ImageName { get; set; }
         public int MaximumHitPoints { get; private set; }
         public int HitPoints
         {
             get { return _hitPoints; }
-            private set
+             set
             {
                 _hitPoints = value;
                 OnPropertyChanged(nameof(HitPoints));
