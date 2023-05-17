@@ -23,7 +23,7 @@ namespace Engine.Models
         {
             foreach (Location loc in _locations)
             {
-                if (loc.XCoordinate == loc.XCoordinate && loc.YCoordinate == loc.YCoordinate)
+                if (loc.XCoordinate == x && loc.YCoordinate == y)
                 {
                     {
                         return loc;
