@@ -11,7 +11,7 @@ using Engine.EventArgs;
 
 namespace Engine.ViewModels
 {
-    public class GameSession : BaseNotification
+    public class GameSession : INotifyPropertyChanged
     {
         public event EventHandler<GameMessageEventArgs> OnMessageRaised;
 
@@ -68,7 +68,7 @@ namespace Engine.ViewModels
 
             CurrentPlayer = new Player
             {
-                Name = "Scott",
+                Name = "Luca",
                 CharacterClass = "Fighter",
                 HitPoints = 10,
                 Gold = 1000000,
@@ -83,7 +83,7 @@ namespace Engine.ViewModels
             Worldfactory factory = new Worldfactory();
             CurrentWorld = factory.CreateWorld();
 
-            CurrentLocation = CurrentWorld.LocationAt(0,0);
+            CurrentLocation = CurrentWorld.LocationAt(-1, 0);
             CurrentPlayer.Inventory.Add(ItemFactory.CreateGameItem(1001));
             CurrentPlayer.Inventory.Add(ItemFactory.CreateGameItem(1001));
             CurrentPlayer.Inventory.Add(ItemFactory.CreateGameItem(1002));
@@ -122,6 +122,7 @@ namespace Engine.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         private void GivePlayerQuestsAtLocation()
         {
             foreach (Quest quest in CurrentLocation.QuestsAvailableHere)

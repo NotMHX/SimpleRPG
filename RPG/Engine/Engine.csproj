@@ -6,24 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Images\Locations\animals.png" />
-    <None Remove="Images\Locations\castle.png" />
-    <None Remove="Images\Locations\forest.png" />
-    <None Remove="Images\Locations\graveyard.png" />
-    <None Remove="Images\Locations\house.png" />
-    <None Remove="Images\Locations\village.png" />
-    <None Remove="Images\Locations\witch tower.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Images\Locations\animals.png" />
-    <Resource Include="Images\Locations\castle.png" />
-    <Resource Include="Images\Locations\forest.png" />
-    <Resource Include="Images\Locations\graveyard.png" />
-    <Resource Include="Images\Locations\house.png" />
-    <Resource Include="Images\Locations\village.png" />
-    <Resource Include="Images\Locations\witch tower.png" />
-  </ItemGroup>
-
 </Project>

@@ -16,19 +16,19 @@ namespace Engine.Factory
             {
                 case 1:
                     Monster werewolf =
-                        new Monster("Werewolf", "Snake.png", 4, 4,3,5, 5, 1);
+                        new Monster("Werewolf", "werewolf.png", 4, 4,3,5, 5, 1);
                     AddLootItem(werewolf, 9001, 25);
                     AddLootItem(werewolf, 9002, 75);
                     return werewolf;
                 case 2:
                     Monster ghost =
-                        new Monster("Ghost", "Rat.png", 5, 5,1,3, 5, 1);
+                        new Monster("Ghost", "ghost.png", 5, 5,1,3, 5, 1);
                     AddLootItem(ghost, 9003, 25);
                     AddLootItem(ghost, 9004, 75);
                     return ghost;
                 case 3:
                     Monster demon =
-                        new Monster("Demon", "GiantSpider.png", 10, 10, 3, 6, 10, 310);
+                        new Monster("Demon", "demon.png", 10, 10, 3, 6, 10, 310);
                     AddLootItem(demon, 9005, 25);
                     AddLootItem(demon, 9006, 75);
                     return demon;
