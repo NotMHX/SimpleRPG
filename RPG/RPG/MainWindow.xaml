@@ -132,7 +132,36 @@
                     </StackPanel>
                 </Grid>
             </Border>
+
+            <Border Grid.Row="2" Grid.Column="0"
+                    BorderBrush="Gainsboro"
+                    BorderThickness="1">
+                <!-- Combat Controls-->
+                <Grid Grid.Row="0" Grid.Column="0"
+                  Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox Grid.Row="0" Grid.Column="0"
+                          ItemsSource="{Binding CurrentPlayer.Weapons}"
+                          SelectedItem="{Binding CurrentWeapon}"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="ID"/>
+                    <Button Grid.Row="0" Grid.Column="2"
+                        Content="Use"
+                        Click="OnClick_AttackMonster"/>
+                </Grid>
+            </Border>
             
+
         </Grid>
 
         <!-- Inventory and Quests -->
@@ -182,31 +211,6 @@
                 <ColumnDefinition Width="255" />
             </Grid.ColumnDefinitions>
 
-
-            
-            <!-- Combat Controls-->
-            <Grid Grid.Row="0" Grid.Column="0"
-                  Visibility="{Binding HasMonster, Converter={StaticResource BooleanToVisibility}}"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition Width="50"/>
-                </Grid.ColumnDefinitions>
-                <ComboBox Grid.Row="0" Grid.Column="0"
-                          ItemsSource="{Binding CurrentPlayer.Weapons}"
-                          SelectedItem="{Binding CurrentWeapon}"
-                          DisplayMemberPath="Name"
-                          SelectedValuePath="ID"/>
-                <Button Grid.Row="0" Grid.Column="2"
-                        Content="Use"
-                        Click="OnClick_AttackMonster"/>
-            </Grid>
             <!-- Game Messages -->
             <Border Grid.Row="0" Grid.Column="0"
                     Grid.RowSpan="1"
