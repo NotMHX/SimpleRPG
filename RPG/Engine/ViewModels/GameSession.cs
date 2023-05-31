@@ -31,6 +31,7 @@ namespace Engine.ViewModels
                 OnPropertyChanged(nameof(HasLocationToWest));
                 OnPropertyChanged(nameof(HasLocationToSouth));
 
+                CompleteQuestsAtLocation();
                 GivePlayerQuestsAtLocation();
                 GetMonsterAtLocation();
             }
@@ -69,9 +70,9 @@ namespace Engine.ViewModels
             CurrentPlayer = new Player
             {
                 Name = "Luca",
-                CharacterClass = "Fighter",
-                HitPoints = 10,
-                Gold = 1000000,
+                CharacterClass = "Swordsman",
+                HitPoints = 50,
+                Gold = 100,
                 ExperiencePoints = 0,
                 Level = 1
             };
@@ -84,11 +85,15 @@ namespace Engine.ViewModels
             CurrentWorld = factory.CreateWorld();
 
             CurrentLocation = CurrentWorld.LocationAt(-1, 0);
-            CurrentPlayer.Inventory.Add(ItemFactory.CreateGameItem(1001));
-            CurrentPlayer.Inventory.Add(ItemFactory.CreateGameItem(1001));
-            CurrentPlayer.Inventory.Add(ItemFactory.CreateGameItem(1002));
+            DefaultItems();
         }
-
+       
+        public void DefaultItems()
+        {
+            CurrentPlayer.Inventory.Add(ItemFactory.CreateGameItem(1001));
+            CurrentPlayer.Inventory.Add(ItemFactory.CreateGameItem(1001));
+            CurrentPlayer.Inventory.Add(ItemFactory.CreateGameItem(2001));
+        }
         public void MoveNorth()
         {
             if(HasLocationToNorth)
@@ -123,6 +128,40 @@ namespace Engine.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private void CompleteQuestsAtLocation()
+        {
+            foreach (Quest quest in CurrentLocation.QuestsAvailableHere)
+            {
+                QuestStatus questToComplete =
+                    CurrentPlayer.Quests.FirstOrDefault(q => q.PlayerQuest.ID == quest.ID && !q.IsCompleted);
+                if (questToComplete != null)
+                {
+                    if (CurrentPlayer.HasAllTheseItems(quest.ItemsRequirement))
+                    {
+                        foreach (ItemQuantity itemQuantity in quest.ItemsRequirement)
+                        {
+                            for (int i = 0; i < itemQuantity.Quantity; i++)
+                            {
+                                CurrentPlayer.RemoveItemFromInventory(CurrentPlayer.Inventory.First(item => item.ItemTypeID == itemQuantity.ItemID));
+                            }
+                        }
+                        RaiseMessage("");
+                        RaiseMessage($"You completed the '{quest.Name}' quest");
+                        CurrentPlayer.ExperiencePoints += quest.RewardInXP;
+                        RaiseMessage($"You receive {quest.RewardInXP} experience points");
+                        CurrentPlayer.Gold += quest.RewardInGold;
+                        RaiseMessage($"You receive {quest.RewardInGold} gold");
+                        foreach (ItemQuantity itemQuantity in quest.RewardInItems)
+                        {
+                            GameItem rewardItem = ItemFactory.CreateGameItem(itemQuantity.ItemID);
+                            CurrentPlayer.AddItemToInventory(rewardItem);
+                            RaiseMessage($"You receive a {rewardItem.Name}");
+                        }
+                        questToComplete.IsCompleted = true;
+                    }
+                }
+            }
+        }
         private void GivePlayerQuestsAtLocation()
         {
             foreach (Quest quest in CurrentLocation.QuestsAvailableHere)
@@ -145,7 +184,7 @@ namespace Engine.ViewModels
                 RaiseMessage("You must select a weapon, to attack.");
                 return;
             }
-            // Determine damage to monster
+      
             int damageToMonster = RandomNumberGenerator.NumberBetween(CurrentWeapon.MinimumDamage, CurrentWeapon.MaximumDamage);
             if (damageToMonster == 0)
             {
@@ -156,7 +195,7 @@ namespace Engine.ViewModels
                 CurrentMonster.HitPoints -= damageToMonster;
                 RaiseMessage($"You hit the {CurrentMonster.Name} for {damageToMonster} points.");
             }
-            // If monster if killed, collect rewards and loot
+           
             if (CurrentMonster.HitPoints <= 0)
             {
                 RaiseMessage("");
@@ -172,12 +211,12 @@ namespace Engine.ViewModels
                     CurrentPlayer.AddItemToInventory(item);
                     RaiseMessage($"You receive {itemQuantity.Quantity} {item.Name}.");
                 }
-                // Get another monster to fight
+            
                 GetMonsterAtLocation();
             }
             else
             {
-                // If monster is still alive, let the monster attack
+            
                 int damageToPlayer = RandomNumberGenerator.NumberBetween(CurrentMonster.MinimumDamage, CurrentMonster.MaximumDamage);
                 if (damageToPlayer == 0)
                 {
@@ -188,13 +227,16 @@ namespace Engine.ViewModels
                     CurrentPlayer.HitPoints -= damageToPlayer;
                     RaiseMessage($"The {CurrentMonster.Name} hit you for {damageToPlayer} points.");
                 }
-                // If player is killed, move them back to their home.
+            
                 if (CurrentPlayer.HitPoints <= 0)
                 {
                     RaiseMessage("");
                     RaiseMessage($"The {CurrentMonster.Name} killed you.");
-                    CurrentLocation = CurrentWorld.LocationAt(0, -1); // Player's home
-                    CurrentPlayer.HitPoints = CurrentPlayer.Level * 10; // Completely heal the player
+                    CurrentLocation = CurrentWorld.LocationAt(0, -1); 
+                    CurrentPlayer.HitPoints = CurrentPlayer.Level * 50 ;
+
+                  CurrentPlayer.Inventory.Clear();
+                    DefaultItems();
                 }
             }
         }

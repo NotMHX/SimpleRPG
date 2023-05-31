@@ -23,24 +23,22 @@ namespace Engine.Models
 
         public void AddMonster(int monsterID, int chanceOfEncountering)
         {
-            if (MonstersHere.Exists(m => m.MonsterID == monsterID)) // If there is a monster already
+            if (MonstersHere.Exists(m => m.MonsterID == monsterID)) 
             {
-                MonstersHere.First(m => m.MonsterID == monsterID).ChanceOfEncountering = chanceOfEncountering; // Add chance to existing monster
-            }
+                MonstersHere.First(m => m.MonsterID == monsterID).ChanceOfEncountering = chanceOfEncountering;             }
             else
             {
-                MonstersHere.Add(new MonsterEncounter(monsterID, chanceOfEncountering)); // Adds new monster if there's none yet
-            }
+                MonstersHere.Add(new MonsterEncounter(monsterID, chanceOfEncountering));           }
         }
 
         public Monster GetMonster()
         {
             if (!MonstersHere.Any())
             {
-                return null; // If there's no monster
+                return null; 
             }
 
-            int totalChances = MonstersHere.Sum(m => m.ChanceOfEncountering); // Total chance of encountering
+            int totalChances = MonstersHere.Sum(m => m.ChanceOfEncountering); 
 
             int randomNumber = RandomNumberGenerator.NumberBetween(1, totalChances);
 
@@ -48,15 +46,15 @@ namespace Engine.Models
 
             foreach (MonsterEncounter monsterEncounter in MonstersHere)
             {
-                total += monsterEncounter.ChanceOfEncountering; // adds current chance to total
+                total += monsterEncounter.ChanceOfEncountering; 
 
-                if (randomNumber <= total) // if total is less than the max number of monsters
+                if (randomNumber <= total) 
                 {
                     return MonsterFactory.GetMonster(monsterEncounter.MonsterID);
                 }
             }
 
-            // if there's none
+          
             return MonsterFactory.GetMonster(MonstersHere.Last().MonsterID);
 
         }

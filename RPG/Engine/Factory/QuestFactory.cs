@@ -16,13 +16,13 @@ namespace Engine.Factory
             List<ItemQuantity> itemRequirements = new List<ItemQuantity>();
             List<ItemQuantity> rewardInItems = new List<ItemQuantity>();
 
-            rewardInItems.Add(new ItemQuantity(9001, 5));
-            rewardInItems.Add(new ItemQuantity(1002, 1));
+            itemRequirements.Add(new ItemQuantity(4002, 8));
+            rewardInItems.Add(new ItemQuantity(2003, 1));
 
             _quests.Add(new Quest(
              1,
-             "Clear the tower",
-             "Defeat the snakes in the Witch Tower",
+             "Get souls in the village",
+             "Defeat 8 Ghost in the Village and get there souls",
              itemRequirements,
              25, 10,
              rewardInItems));
@@ -30,7 +30,7 @@ namespace Engine.Factory
 
         internal static Quest GetQuestByID(int id)
         {
-            return _quests.FirstOrDefault(quest => quest.ID == id); // Gets the first result where the input matches an ID in the _quests list
+            return _quests.FirstOrDefault(quest => quest.ID == id);
         }
     }
 }

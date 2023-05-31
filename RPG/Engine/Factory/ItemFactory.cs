@@ -19,6 +19,9 @@ namespace Engine.Factory
             _standardGameItems.Add(new Weapon(2002, "Kitchen Knife", 10, 3, 8));
             _standardGameItems.Add(new Weapon(2003, "Japanese Katana", 30, 10, 18));
             _standardGameItems.Add(new Weapon(3001, "Wooden Bow", 20, 0, 10));
+            _standardGameItems.Add(new Item(4002, "Soul", 0));
+            
+
         }
         public static GameItem CreateGameItem(int itemTypeID)
         {

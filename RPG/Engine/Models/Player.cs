@@ -16,7 +16,7 @@ namespace Engine.Models
         private int _hitPoints;
         private int _level;
         private int _gold;
-        public  string Name 
+        public string Name
         {
             get { return _name; }
             set
@@ -25,16 +25,16 @@ namespace Engine.Models
                 OnPropertyChanged(nameof(Name));
             }
         }
-        public  string CharacterClass 
+        public string CharacterClass
         {
             get { return _characterClass; }
-            set 
-            { 
+            set
+            {
                 _characterClass = value;
                 OnPropertyChanged(nameof(CharacterClass));
             }
         }
-        public int HitPoints 
+        public int HitPoints
         {
             get { return _hitPoints; }
             set
@@ -43,11 +43,11 @@ namespace Engine.Models
                 OnPropertyChanged(nameof(HitPoints));
             }
         }
-        public int ExperiencePoints 
+        public int ExperiencePoints
         {
             get { return _experiencePoints; }
-            set 
-            { 
+            set
+            {
                 _experiencePoints = value;
                 OnPropertyChanged(nameof(ExperiencePoints));
             }
@@ -82,9 +82,28 @@ namespace Engine.Models
             Quests = new ObservableCollection<QuestStatus>();
         }
         public void AddItemToInventory(GameItem item)
-        { Inventory.Add(item);
-            
+        {
+            Inventory.Add(item);
+
             OnPropertyChanged(nameof(Weapons));
+        }
+
+        public void RemoveItemFromInventory(GameItem item)
+        {
+            Inventory.Remove(item);
+            OnPropertyChanged(nameof(Weapons));
+        }
+        public bool HasAllTheseItems(List<ItemQuantity> items)
+        {
+            foreach (ItemQuantity item in items)
+            {
+                if (Inventory.Count(i => i.ItemTypeID == item.ItemID) < item.Quantity)
+                {
+                    return false;
+                }
+            }
+            return true;
+
         }
     }
 }
