@@ -191,6 +191,9 @@
                             <DataGridTextColumn Header="Name"
                                                 Binding="{Binding PlayerQuest.Name}"
                                                 Width="*"/>
+                            <DataGridTextColumn Header="Description"
+                                                Binding="{Binding PlayerQuest.Description}"
+                                                Width="*"/>
                             <DataGridTextColumn Header="Done?"
                                                 Binding="{Binding IsCompleted}"
                                                 Width="Auto"/>
